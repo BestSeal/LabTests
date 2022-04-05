@@ -1,0 +1,71 @@
+﻿<Window x:Class="Calculator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Calculator"
+        xmlns:viewModels="clr-namespace:Calculator.ViewModels"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="400" Width="650">
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400"></ColumnDefinition>
+            <ColumnDefinition Width="200"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <WrapPanel>
+            <TextBox Name="LeftOperand" IsReadOnly="True" Text="{Binding LeftOperand.Value}" Width="150" Height="30" Margin="5, 5, 30, 5">
+                <TextBox.InputBindings>
+                    <MouseBinding Command="{Binding TextBoxCommand}"
+                                  CommandParameter="{x:Static viewModels:SelectedOperand.Left}" MouseAction="LeftClick" />
+                </TextBox.InputBindings>
+            </TextBox>
+            <TextBlock Name="RightOperation" FontSize="20" Text="{Binding StringOperandValue}" Margin="0, 0, 25, 0">
+            </TextBlock>
+            <TextBox Name="RightOperand" IsReadOnly="True" Text="{Binding RightOperand.Value}" Width="150" Height="30" Margin="5,5,5,5">
+                <TextBox.InputBindings>
+                    <MouseBinding Command="{Binding TextBoxCommand}"
+                                  CommandParameter="{x:Static viewModels:SelectedOperand.Right}"
+                                  MouseAction="LeftClick" />
+                </TextBox.InputBindings>
+            </TextBox>
+        </WrapPanel>
+        <ItemsControl Grid.Column="0" Grid.Row="1" ItemsSource="{Binding OperandModels}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="4" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button
+                        Command="{Binding DataContext.OperandCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}}"
+                        CommandParameter="{Binding Value}" Content="{Binding Value}" />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <WrapPanel Grid.Column="1" Grid.Row="0">
+            <TextBlock FontSize="20" Text="=" Margin="0, 0, 25, 0">
+            </TextBlock>
+            <TextBlock Name="OperationResult" Text="{Binding Result.Value}" Width="150" Height="30" Margin="5,5,5,5">
+            </TextBlock>
+        </WrapPanel>
+        <ItemsControl IsEnabled="True" Grid.Column="1" Grid.Row="1" ItemsSource="{Binding OperationModels}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="3" Rows="2" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button
+                        Command="{Binding DataContext.OperationCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}}"
+                        CommandParameter="{Binding Operation}" Content="{Binding Operation}" />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </Grid>
+</Window>

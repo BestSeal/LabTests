@@ -1,0 +1,26 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "087c99ba-f487-4301-a623-0c79f78bdfab": {
+      "ProjectGuid": "087c99ba-f487-4301-a623-0c79f78bdfab",
+      "DisplayName": "CalcTestsFluent",
+      "ColorIndex": 0
+    },
+    "6c074ddf-7c37-492a-a9a8-e6130cbeb677": {
+      "ProjectGuid": "6c074ddf-7c37-492a-a9a8-e6130cbeb677",
+      "DisplayName": "CalcTests",
+      "ColorIndex": 1
+    },
+    "c5613dda-db43-4901-aa90-3f47e72cef37": {
+      "ProjectGuid": "c5613dda-db43-4901-aa90-3f47e72cef37",
+      "DisplayName": "ProfilingApp",
+      "ColorIndex": 2
+    },
+    "8670b335-c170-4c8b-8705-8540d04cefce": {
+      "ProjectGuid": "8670b335-c170-4c8b-8705-8540d04cefce",
+      "DisplayName": "ProfilingAppThread",
+      "ColorIndex": 3
+    }
+  },
+  "NextColorIndex": 4
+}
